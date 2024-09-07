@@ -1,14 +1,15 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex"
 
 export default createStore({
   state: {
+    isGetterRouter: false,
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
+    changeGetterRouter: (state, value) => {
+      state.isGetterRouter = value
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {},
 })
