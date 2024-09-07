@@ -6,6 +6,7 @@ import NewsAdd from "@/views/news-mange/NewsAdd.vue"
 import NewsList from "@/views/news-mange/NewsList.vue"
 import ProductAdd from "@/views/product-mange/ProductAdd.vue"
 import ProductList from "@/views/product-mange/ProductList.vue"
+import NotFound from "@/views/notfound/NotFound.vue"
 const routes = [
   {
     path: "/index",
@@ -40,6 +41,15 @@ const routes = [
   {
     path: "/product-manage/productlist",
     component: ProductList,
+  },
+  {
+    path: "/",
+    redirect: "/index",
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFound,
   },
 ]
 
