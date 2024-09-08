@@ -1,6 +1,6 @@
 <template>
-     <el-aside :width="$store.state.isCollapsed ? '64px' : '200px'">
-          <el-menu :collapse="$store.state.isCollapsed">
+     <el-aside :width="$store.state.isCollapsed ? '64px' : '220px'">
+          <el-menu :collapse="$store.state.isCollapsed" :router="true" :default-active="route.fullPath">
                <el-menu-item index="/index">
                     <el-icon>
                          <HomeFilled />
@@ -57,10 +57,19 @@
 
 <script setup>
 import { HomeFilled, Avatar, UserFilled, MessageBox, Reading, Pointer } from '@element-plus/icons-vue'
+
+import { useRoute } from 'vue-router'
+// 当前路由信息
+const route = useRoute()
+
 </script>
 <style lang="scss" scoped>
 .el-aside {
      height: 100vh;
      transition: all 700ms;
+
+     .el-menu {
+          height: 100vh;
+     }
 }
 </style>
