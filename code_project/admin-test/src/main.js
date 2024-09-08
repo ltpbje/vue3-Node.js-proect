@@ -2,8 +2,8 @@ import { createApp } from "vue"
 import App from "./App.vue"
 import router from "./router"
 import store from "./store"
-// import ElementPlus from "element-plus"
-// import "element-plus/dist/index.css"
+import ElementPlus from "element-plus"
+import "element-plus/dist/index.css"
 import Particles from "@tsparticles/vue3"
 import { loadFull } from "tsparticles" // if you are going to use `loadFull`, install the "tsparticles" package too.
 // import { loadSlim } from "tsparticles-slim" // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
@@ -15,5 +15,5 @@ app.use(Particles, {
     // await loadSlim(engine) // or you can load the slim version from "tsparticles-slim" if don't need Shapes or Animations
   },
 })
-// app.use(ElementPlus)
+app.use(ElementPlus)
 app.use(store).use(router).mount("#app")
