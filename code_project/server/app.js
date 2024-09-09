@@ -38,4 +38,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+/** 
+ /adminapi/*－后台系统用的
+ /webapi/*－企业官网用的
+ **/
+
+
+
 module.exports = app;
