@@ -1,4 +1,4 @@
-```cmd
+```powershell
 
 > use kerwin_test
 switched to db kerwin_test
