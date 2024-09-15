@@ -49,4 +49,12 @@ router.get('/user/delete/:id', (req, res) => {
   })
 })
 
+router.get('/user/list', (req, res) => {
+  console.log(req.query)
+  const { page,limit} =  req.query
+  UserModel.find({},['username','age']).sort({age:1}).skip((page-1)*limit).limit(limit).then(data => {
+    res.send(data)
+  })
+})
+
 module.exports = router;
