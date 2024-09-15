@@ -18,12 +18,35 @@ router.post("/user/add",(req,res)=>{
     username,password,age
   }).then(data => {
     console.log(data)
-  })
-
-  res.send({
+    res.send({
     ok:1
   })
+  })
 
+  
+
+})
+
+// 动态路由 获取id
+router.post("/user/update/:id", (req, res) => {
+  console.log(req.body,req.params);
+  const { username, password, age } = req.body
+  UserModel.updateOne({ _id: req.params.id }, { username,age,password }).then(data => {
+    res.send({
+      ok:1
+    })
+  })
+})
+
+// 动态路由 获取id
+router.get('/user/delete/:id', (req, res) => {
+  UserModel.deleteOne({
+    _id:req.params.id
+  }).then((data) => {
+    res.send({
+      ok:1
+    })
+  })
 })
 
 module.exports = router;
