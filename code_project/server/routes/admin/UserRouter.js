@@ -1,7 +1,8 @@
 var express = require('express');
-var router = express.Router();
+var UserRouter = express.Router();
+const UserController =require('../../controllers/admin/UserController')
 
 
-router.post('/adminapi/user/login', UserController.login);
+UserRouter.post('/adminapi/user/login', UserController.login);
 
-module.exports = router;
+module.exports = UserRouter;

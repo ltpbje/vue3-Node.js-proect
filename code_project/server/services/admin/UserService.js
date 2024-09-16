@@ -1,6 +1,6 @@
 const UserModel = require("../../models/UserModel")
 
-const UserService = () => {
+const UserService =  {
     login: async ({ username,password}) => {
         return UserModel.find({
             username,
