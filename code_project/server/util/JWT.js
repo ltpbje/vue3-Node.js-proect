@@ -15,10 +15,10 @@ const JWT = {
     }
 }
  
-const token= JWT.generate({ username: 'kerwin' }, '10s')
-console.log(JWT.verify(token))
+// const token= JWT.generate({ username: 'kerwin' }, '10s')
+// console.log(JWT.verify(token))
 
-setTimeout(() => {
-console.log(JWT.verify(token))
-}, 11000);
+// setTimeout(() => {
+// console.log(JWT.verify(token))
+// }, 11000);
 module.exports = JWT

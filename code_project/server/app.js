@@ -7,6 +7,7 @@ const UserRouter = require('./routes/admin/UserRouter')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const JWT = require('./util/JWT');
 
 var app = express();
 
@@ -28,6 +29,34 @@ app.use('/users', usersRouter);
  /webapi/*－企业官网用的
  **/
 
+
+app.use((req, res, next) => {
+  //如果token有效，next（）
+  //如果token过期了，返回401错误
+  if (req.url === '/adminapi/user/login') {
+    next()
+    return;
+  }
+  const token = req.headers['authorization'].split(' ')[1]
+  if (token) {
+    const payload= JWT.verify(token)
+    console.log(payload)
+    if (payload) {
+      // const newToken =JWT.generate(payload,'10s')
+      const newToken = JWT.generate({
+        _id: payload._id,
+        username:payload.username
+      },'10s')
+      res.header('Authorization',newToken)
+      next()
+    }
+    else {
+      res.status(401).send({errCode:'-1',errorOnfo:'token过期'})
+    }
+  }
+})
+
+//  后台系统用的用户路由
 app.use(UserRouter)
  
 
