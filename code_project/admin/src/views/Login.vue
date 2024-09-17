@@ -25,7 +25,10 @@
 </template>
 
 <script setup>
+import store from '@/store';
 import axios from 'axios';
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css';
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 const loginForm = reactive({
@@ -47,12 +50,27 @@ const submitForm = () => {
     //1. 校验表单
     loginFormRef.value.validate((valid) => {
         if (valid) {
-            console.log(loginForm)
-            localStorage.setItem('token', 'kerwin')
-            axios.get('/users').then((res) => {
-                console.log(res.data)
+            // console.log(loginForm)
+            // localStorage.setItem('token', 'kerwin')
+            axios.post('/adminapi/user/login', loginForm).then((res) => {
+                // console.log(res.data)
+                if (res.data.ActionType === 'OK') {
+                    // console.log(res.data.data)
+                    store.commit('changeUserInfo', res.data.data)
+                    router.push('/index')
+
+                    // localStorage.setItem('token', 'kerwin')
+                } else {
+                    // ElMessage.error('用户名和密码不匹配')
+                    console.log(res.data)
+                    ElMessage({
+                        message: '用户名和密码不匹配',
+                        type: 'error',
+                        plain: false,
+                    })
+                }
             })
-            router.push('/index')
+            // router.push('/index')
         }
     })
     // 2。拿到表单内容，提交后台

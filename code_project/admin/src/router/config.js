@@ -26,7 +26,7 @@ const routes = [
   },
 
   {
-    path: "/news-manage/addnews",
+    path: "/news-manage/newsadd",
     component: NewsAdd,
   },
   {

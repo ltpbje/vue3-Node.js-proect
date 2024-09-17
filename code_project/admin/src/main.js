@@ -7,7 +7,7 @@ import store from "./store"
 import Particles from "@tsparticles/vue3"
 import { loadFull } from "tsparticles" // if you are going to use `loadFull`, install the "tsparticles" package too.
 // import { loadSlim } from "tsparticles-slim" // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
-
+import '@/util/axios.config'
 const app = createApp(App)
 app.use(Particles, {
   init: async (engine) => {
