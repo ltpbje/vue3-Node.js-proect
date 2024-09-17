@@ -1,5 +1,5 @@
 const UserService = require("../../services/admin/UserService")
-
+require('../../utils/JWT')
 const UserController = {
     login: async (req, res) => {
         console.log(req.body)
@@ -11,7 +11,7 @@ const UserController = {
             })
         } else {
             res.send({
-                ActionType:'ok'
+                ActionType:'OK'
             })
         }
 
