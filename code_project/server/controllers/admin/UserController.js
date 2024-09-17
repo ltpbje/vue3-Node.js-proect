@@ -14,7 +14,7 @@ const UserController = {
             const token = JWT.generate({
                 _id: result[0]._id,
                 username:result[0].username
-            },'10s')
+            },'1d')
             res.header('Authorization',token)
             res.send({
                 ActionType:'OK'
