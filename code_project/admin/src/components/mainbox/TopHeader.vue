@@ -44,6 +44,7 @@ const handleCenter = () => {
 // 退出登录
 const handleLogout = () => {
     localStorage.removeItem('token')
+    store.commit('clearUserInfo')
     router.push('/login')
 }
 </script>
