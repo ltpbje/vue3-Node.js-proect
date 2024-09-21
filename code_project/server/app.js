@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   const token = req.headers['authorization'].split(' ')[1]
   if (token) {
     const payload= JWT.verify(token)
-    console.log(payload)
+    // console.log(payload)
     if (payload) {
       // const newToken =JWT.generate(payload,'10s')
       const newToken = JWT.generate({
