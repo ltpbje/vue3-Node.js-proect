@@ -33,14 +33,33 @@ const UserController = {
         // console.log(req.body,req.file)
         const {username,introduction,gender} =req.body
         const token = req.headers['authorization'].split(' ')[1]
-        const avatar = `/avataruploads/${req.file.filename}`
+        // console.log(req.file)
+        
+        const avatar = req.file ? `/avataruploads/${req.file.filename}` : ''
         const payload = JWT.verify(token)
 
         // 调用service模块更新数据
-        await UserService.upload({_id:payload._id,username,introduction,gender:Number(gender),avatar})
-        res.send({
-            ActionType:'OK'
-        })
+        await UserService.upload({ _id: payload._id, username, introduction, gender: Number(gender), avatar })
+        if (avatar){
+            res.send({
+                ActionType: 'OK',
+                data: {
+                    username,
+                    introduction,
+                    gender: Number(gender),
+                    avatar
+                }
+            })
+        } else {
+             res.send({
+                ActionType: 'OK',
+                data: {
+                    username,
+                    introduction,
+                    gender: Number(gender),
+                }
+            })
+        }
     }
 }
 

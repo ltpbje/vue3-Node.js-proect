@@ -7,10 +7,16 @@ const UserService =  {
             password
         })
     },
-    upload: async ({_id,username,introduction,gender,avatar }) => {
-        return UserModel.updateOne({ _id }, {
-            username,introduction,avatar,gender
-        })
+    upload: async ({ _id, username, introduction, gender, avatar }) => {
+        if (avatar) {
+            return UserModel.updateOne({ _id }, {
+                username,introduction,avatar,gender
+            })
+        } else {
+            return UserModel.updateOne({ _id }, {
+                username,introduction,gender
+            })            
+        }
     }
 }
 
