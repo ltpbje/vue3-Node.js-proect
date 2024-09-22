@@ -17,6 +17,11 @@ const UserService =  {
                 username,introduction,gender
             })            
         }
+    },
+    add: async ({  username, introduction, gender, avatar,password,role }) => {
+        return UserModel.create({
+            username, introduction, gender, avatar, password, role
+        })
     }
 }
 

@@ -60,6 +60,21 @@ const UserController = {
                 }
             })
         }
+    },
+    add: async (req, res) => { 
+        // console.log(req.body,req.file)
+        const {username,introduction,gender,role,password} =req.body
+        // const token = req.headers['authorization'].split(' ')[1]
+        // console.log(req.file)
+        
+        const avatar = req.file ? `/avataruploads/${req.file.filename}` : ''
+
+        // 调用service模块添加用户
+        await UserService.add({  username, introduction, gender: Number(gender), avatar,role:Number(role),password })
+       
+        res.send({
+            ActionType: 'OK',
+        })
     }
 }
 
