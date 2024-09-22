@@ -22,6 +22,9 @@ const UserService =  {
         return UserModel.create({
             username, introduction, gender, avatar, password, role
         })
+    },
+    getList:async () => {
+        return UserModel.find({},['username','role','avatar','introduction','gender'])
     }
 }
 

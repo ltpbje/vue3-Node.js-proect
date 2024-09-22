@@ -12,6 +12,8 @@ UserRouter.post('/adminapi/user/login', UserController.login);
 UserRouter.post('/adminapi/user/upload',upload.single('file') ,UserController.upload);
 // 添加用户路由
 UserRouter.post('/adminapi/user/add',upload.single('file') ,UserController.add);
+// 获取用户信息列表
+UserRouter.get('/adminapi/user/list' ,UserController.getList);
 
 
 

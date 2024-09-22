@@ -14,7 +14,7 @@
             <el-form-item label="密码" prop="password">
                 <el-input v-model="userForm.password" type="password" />
             </el-form-item>
-            <el-form-item label="性别" prop="role">
+            <el-form-item label="角色" prop="role">
                 <el-select v-model="userForm.role" placeholder="Select" style="width: 100%">
                     <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>

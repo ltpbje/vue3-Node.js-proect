@@ -75,7 +75,15 @@ const UserController = {
         res.send({
             ActionType: 'OK',
         })
+    },
+    getList:async (req, res) => {
+        const result= await UserService.getList()
+        res.send({   
+            ActionType: 'OK',
+            data:result
+        })
     }
+
 }
 
 module.exports = UserController
