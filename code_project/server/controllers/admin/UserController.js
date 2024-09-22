@@ -82,6 +82,15 @@ const UserController = {
             ActionType: 'OK',
             data:result
         })
+    },
+    delList:async (req, res) => {
+        // console.log(req.params.id)
+
+        const result =await UserService.delList({_id:req.params.id})
+        res.send({
+            ActionType: 'OK',
+            data:result
+        })
     }
 
 }
