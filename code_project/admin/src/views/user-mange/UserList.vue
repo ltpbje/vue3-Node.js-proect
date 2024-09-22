@@ -45,13 +45,79 @@
                 </el-table-column>
             </el-table>
         </el-card>
+
+        <!-- 编辑对话框 -->
+        <el-dialog v-model="dialogVisible" title="编辑用户" width="50%">
+            <el-form ref="userFormRef" style="max-width: 600px" :model="userForm" :rules="userFormRules"
+                label-width="auto" class="demo-ruleForm" status-icon>
+                <el-form-item label="用户名" prop="username">
+                    <el-input v-model="userForm.username" />
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input v-model="userForm.password" type="password" />
+                </el-form-item>
+                <el-form-item label="角色" prop="role">
+                    <el-select v-model="userForm.role" placeholder="Select" style="width: 100%">
+                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="个人简介" prop="introduction">
+                    <el-input v-model="userForm.introduction" type="textarea" />
+                </el-form-item>
+
+            </el-form>
+            <template #footer>
+                <div class="dialog-footer">
+                    <el-button @click="dialogVisible = false">取消</el-button>
+                    <el-button type="primary" @click="dialogVisible = false">
+                        确认
+                    </el-button>
+                </div>
+            </template>
+        </el-dialog>
     </div>
 </template>
 
 <script setup>
 import axios from 'axios';
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 const tableData = ref([])
+const dialogVisible = ref(false)
+const userFormRef = ref()
+const userForm = reactive({
+    username: '',
+    password: '',
+    role: 2,//1.管理员 2.编辑
+    introduction: '',
+})
+
+const userFormRules = reactive({
+    username: [
+        { required: true, message: '请输入用户名', trigger: 'blur' },
+    ],
+    password: [
+        { required: true, message: '请输入密码', trigger: 'blur' },
+    ],
+    role: [
+        { required: true, message: '请选择权限', trigger: 'blur' },
+    ],
+    introduction: [
+        { required: true, message: '请输入简介', trigger: 'blur' },
+    ],
+})
+
+// 角色选项
+const options = [
+    {
+        label: '管理员',
+        value: 1
+    },
+    {
+        label: '编辑',
+        value: 2
+    }
+]
+
 onMounted(() => {
     getTableData()
 })
@@ -63,9 +129,13 @@ const getTableData = async () => {
 }
 
 
-const handleEdit = (data) => {
+const handleEdit = async (data) => {
     console.log(data)
+    // 获取包含密码的用户信息
+    const res = await axios.get(`/adminapi/user/list/${data._id}`)
+    console.log(res)
 
+    dialogVisible.value = true
 }
 
 const handleDelete = async (data) => {
