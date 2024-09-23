@@ -28,6 +28,9 @@ const UserService =  {
     },
     delList: async ({_id}) => {
         return UserModel.deleteOne({_id})
+    },
+    putList: async (body) => {
+        return UserModel.updateOne({_id:body._id},body)        
     }
 }
 

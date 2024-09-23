@@ -83,6 +83,7 @@ const UserController = {
             data:result
         })
     },
+    // 删除用户信息
     delList:async (req, res) => {
         // console.log(req.params.id)
 
@@ -90,6 +91,13 @@ const UserController = {
         res.send({
             ActionType: 'OK',
             data:result
+        })
+    },
+    // 编辑用户信息
+    putList: async (req, res) => {
+        const result = await UserService.putList(req.body)
+         res.send({
+            ActionType: 'OK',
         })
     }
 

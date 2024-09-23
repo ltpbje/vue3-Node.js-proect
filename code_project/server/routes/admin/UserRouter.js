@@ -18,6 +18,8 @@ UserRouter.get('/adminapi/user/list', UserController.getList);
 UserRouter.get('/adminapi/user/list/:id' ,UserController.getList);
 // 删除用户
 UserRouter.delete('/adminapi/user/list/:id' ,UserController.delList);
+// 编辑用户
+UserRouter.put('/adminapi/user/list/:id' ,UserController.putList);
 
 
 

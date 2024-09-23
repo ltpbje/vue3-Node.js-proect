@@ -69,7 +69,7 @@
             <template #footer>
                 <div class="dialog-footer">
                     <el-button @click="dialogVisible = false">取消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">
+                    <el-button type="primary" @click="handleEditConfirm">
                         确认
                     </el-button>
                 </div>
@@ -128,14 +128,28 @@ const getTableData = async () => {
     tableData.value = res.data.data
 }
 
-
+// 编辑回调
 const handleEdit = async (data) => {
-    console.log(data)
+    // console.log(data)
     // 获取包含密码的用户信息
     const res = await axios.get(`/adminapi/user/list/${data._id}`)
-    console.log(res)
-
+    // console.log(res.data.data)
+    Object.assign(userForm, res.data.data[0])
+    // console.log(userForm)
     dialogVisible.value = true
+}
+
+// 编辑确认回调
+const handleEditConfirm = () => {
+    userFormRef.value.validate(async (vaild) => {
+        if (vaild) {
+            //1-更新后端
+            await axios.put(`/adminapi/user/list/${userForm._id}`, userForm)
+            //2-dialog隐藏
+
+            //3-获取table数据
+        }
+    })
 }
 
 const handleDelete = async (data) => {
