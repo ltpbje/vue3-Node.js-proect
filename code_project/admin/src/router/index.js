@@ -2,7 +2,6 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import Login from "@/views/Login.vue"
 import MainBox from "@/views/MainBox.vue"
 import RoutesConfig from "./config"
-import { nextTick, toRaw } from "vue"
 import store from "@/store"
 const routes = [
   {

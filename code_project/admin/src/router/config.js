@@ -7,6 +7,7 @@ import NewsList from "@/views/news-mange/NewsList.vue"
 import ProductAdd from "@/views/product-mange/ProductAdd.vue"
 import ProductList from "@/views/product-mange/ProductList.vue"
 import NotFound from "@/views/notfound/NotFound.vue"
+import store from "@/store"
 const routes = [
   {
     path: "/index",
@@ -19,10 +20,24 @@ const routes = [
   {
     path: "/user-manage/adduser",
     component: UserAdd,
+    beforeEnter: (to, from, next) => {
+      // 路由守卫
+        // 路由进入前的操作 只有管理员可以进入该页面
+      if (store.state.userInfo.role === 1) {
+        next()
+      } 
+      },
   },
   {
     path: "/user-manage/userlist",
     component: UserList,
+    beforeEnter: (to, from, next) => {
+      // 路由守卫
+        // 路由进入前的操作 只有管理员可以进入该页面
+      if (store.state.userInfo.role === 1) {
+        next()
+      } 
+      },
   },
 
   {
