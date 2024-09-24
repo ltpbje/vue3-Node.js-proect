@@ -146,8 +146,9 @@ const handleEditConfirm = () => {
             //1-更新后端
             await axios.put(`/adminapi/user/list/${userForm._id}`, userForm)
             //2-dialog隐藏
-
+            dialogVisible.value = false
             //3-获取table数据
+            getTableData()
         }
     })
 }
