@@ -38,6 +38,9 @@ dependencies:
   vuex-persistedstate:
     specifier: ^4.1.0
     version: 4.1.0(vuex@4.1.0)
+  wangeditor:
+    specifier: ^4.7.15
+    version: 4.7.15
 
 devDependencies:
   '@vue/cli-plugin-babel':
@@ -1343,12 +1346,19 @@ packages:
     resolution: {integrity: sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==}
     dev: true
 
+  /@babel/runtime-corejs3@7.25.6:
+    resolution: {integrity: sha512-Gz0Nrobx8szge6kQQ5Z5MX9L3ObqNwCQY1PSwSNzreFL7aHGxv8Fp2j3ETV6/wWdbiV+mW6OSm8oQhg3Tcsniw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      core-js-pure: 3.38.1
+      regenerator-runtime: 0.14.1
+    dev: false
+
   /@babel/runtime@7.25.6:
     resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: true
 
   /@babel/template@7.25.0:
     resolution: {integrity: sha512-aOOgh1/5XzKvg1jvVz7AVrx2piJ2XBi227DHmbY6y+bM9H2FlN+IfecYu4Xl0cNiiVejlsCri89LUsbj8vJD9Q==}
@@ -3563,6 +3573,11 @@ packages:
     dependencies:
       browserslist: 4.23.3
     dev: true
+
+  /core-js-pure@3.38.1:
+    resolution: {integrity: sha512-BY8Etc1FZqdw1glX0XNOq2FDwfrg/VGqoZOZCdaL+UmdaqDwQwYXkMJT4t6In+zfEfOJDcM9T0KdbBeJg8KKCQ==}
+    requiresBuild: true
+    dev: false
 
   /core-js@3.38.1:
     resolution: {integrity: sha512-OP35aUorbU3Zvlx7pjsFdu1rGNnD4pgw/CWoYzRY3t2EzoVT7shKHY1dlAy3f41cGIO7ZDPQimhGFTlEYkG/Hw==}
@@ -6112,7 +6127,6 @@ packages:
 
   /regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-    dev: true
 
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
@@ -6793,7 +6807,6 @@ packages:
 
   /tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
-    dev: true
 
   /tsparticles-basic@2.12.0:
     resolution: {integrity: sha512-pN6FBpL0UsIUXjYbiui5+IVsbIItbQGOlwyGV55g6IYJBgdTNXgFX0HRYZGE9ZZ9psEXqzqwLM37zvWnb5AG9g==}
@@ -7423,6 +7436,14 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.6.3
       vue: 3.5.3
+    dev: false
+
+  /wangeditor@4.7.15:
+    resolution: {integrity: sha512-aPTdREd8BxXVyJ5MI+LU83FQ7u1EPd341iXIorRNYSOvoimNoZ4nPg+yn3FGbB93/owEa6buLw8wdhYnMCJQLg==}
+    dependencies:
+      '@babel/runtime': 7.25.6
+      '@babel/runtime-corejs3': 7.25.6
+      tslib: 2.7.0
     dev: false
 
   /watchpack@2.4.2:

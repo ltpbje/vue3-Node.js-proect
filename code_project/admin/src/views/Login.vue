@@ -29,7 +29,7 @@ import store from '@/store';
 import axios from 'axios';
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css';
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 const loginForm = reactive({
     username: '',
@@ -73,6 +73,8 @@ const submitForm = () => {
             // router.push('/index')
         }
     })
+
+
     // 2。拿到表单内容，提交后台
     // 3.设置token
     // localstorage.setItem("token", "kerwin")
@@ -81,7 +83,18 @@ const submitForm = () => {
 // const handleLogin = ()=>{
 //     localStorage.setItem('token','kerwin')
 // }
-
+onMounted(() => {
+    window.addEventListener('keydown', keyDown)
+})
+const keyDown = (e) => {
+    //如果是回车则执行登录方法
+    if (e.keyCode == 13) {
+        submitForm()
+    }
+}
+onUnmounted(() => {
+    window.removeEventListener('keydown', keyDown, false)
+})
 const options = {
     background: {
         color: {
