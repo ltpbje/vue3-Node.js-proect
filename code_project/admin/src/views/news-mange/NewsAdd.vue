@@ -11,7 +11,23 @@
                 <el-input v-model="newsForm.title" />
             </el-form-item>
             <el-form-item label="内容" prop="content">
-                <Editor></Editor>
+                <Editor @event="handleEditorChange"></Editor>
+            </el-form-item>
+
+            <el-form-item label="类别" prop="category">
+                <el-select v-model="newsForm.category" placeholder="Select" style="width: 100%">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
+            </el-form-item>
+
+            <el-form-item label="封面" prop="cover">
+                <Upload :avatar="newsForm.cover" @kerwinchange="handleUploadChange"></Upload>
+            </el-form-item>
+
+            <el-form-item>
+                <el-button class="submit_btn" type="primary" @click="submitForm()">
+                    添加新闻
+                </el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -20,6 +36,8 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import Editor from '@/components/editor/Editor.vue'
+import Upload from '@/components/upload/Upload.vue';
+import upload from '@/util/upload';
 const newsFormRef = ref()
 const newsForm = reactive({
     title: '',
@@ -31,26 +49,65 @@ const newsForm = reactive({
 })
 const newsFormRules = reactive({
     title: [
-        { require: true, message: '请输入标题', trigger: 'blur' }
+        { required: true, message: '请输入标题', trigger: 'blur' }
     ],
     content: [
-        { require: true, message: '请输入内容', trigger: 'blur' }
+        { required: true, message: '请输入内容', trigger: 'blur' }
     ],
-    // category: [
-    //     { require: true, message: '请输入分类', trigger: 'blur' }
-    // ],
-    // cover: [
-    //     { require: true, message: '请上传图片', trigger: 'blur' }
-    // ],
-    // file: [
-    //     { require: true, message: '请输入标题', trigger: 'blur' }
-    // ],
-    // isPublish: [
-    //     { require: true, message: '请输入标题', trigger: 'blur' }
-    // ],
+    category: [
+        { required: true, message: '请输入分类', trigger: 'blur' }
+    ],
+    cover: [
+        { required: true, message: '请上传图片', trigger: 'blur' }
+    ],
+    file: [
+        { required: true, message: '请输入标题', trigger: 'blur' }
+    ],
+    isPublish: [
+        { required: true, message: '请输入标题', trigger: 'blur' }
+    ],
 })
 
+//每次editor内容改变的回调
+const handleEditorChange = (data) => {
+    // console.log(data);
+    newsForm.content = data
+    // console.log(newsForm.content)
 
+}
+
+// 新闻类别
+const options = [
+    {
+        label: '最新动态',
+        value: 1,
+    },
+    {
+        label: '典型案例',
+        value: 2,
+    },
+    {
+        label: '通知公告',
+        value: 3,
+    },
+]
+
+// 更改封面图片
+const handleUploadChange = (file) => {
+    // console.log(file)
+    newsForm.cover = URL.createObjectURL(file)
+    newsForm.file = file
+}
+
+// 提交表单
+const submitForm = () => {
+    newsFormRef.value.validate((valid) => {
+        if (valid) {
+            console.log(newsForm)
+
+        }
+    })
+}
 </script>
 
 <style lang="scss" scoped>
