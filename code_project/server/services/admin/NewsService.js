@@ -5,7 +5,10 @@ const NewsService = {
        const {title,content,category,isPublish,cover,editTime}= data
         // console.log('数据库操作')
         return NewsModel.create({title,content,category,isPublish,cover,editTime })
-    } 
+    },
+    getList:async () => {
+        return NewsModel.find({})
+    }
 }
 
 module.exports = NewsService
