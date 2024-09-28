@@ -64,7 +64,7 @@ const route = useRoute()
 const store = useStore()
 const vAdmin = {
      mounted(el) {
-          console.log(el)
+          // console.log(el)
           if (store.state.userInfo.role !== 1) {
                el.remove()
           }

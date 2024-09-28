@@ -5,8 +5,8 @@
                 <span class="text-large font-600 mr-3"> 创建新闻 </span>
             </template>
         </el-page-header>
-        <el-form ref="newsFormRef" style="max-width: 600px" :model="newsForm" :rules="newsFormRules" label-width="auto"
-            class="demo-ruleForm" status-icon>
+        <el-form ref="newsFormRef" style="max-width: 600px; width: 100%; " :model="newsForm" :rules="newsFormRules"
+            label-width="auto " class="demo-ruleForm" status-icon>
             <el-form-item label="标题" prop="title">
                 <el-input v-model="newsForm.title" />
             </el-form-item>
@@ -38,6 +38,7 @@ import { ref, reactive } from 'vue'
 import Editor from '@/components/editor/Editor.vue'
 import Upload from '@/components/upload/Upload.vue';
 import upload from '@/util/upload';
+import router from '@/router';
 const newsFormRef = ref()
 const newsForm = reactive({
     title: '',
@@ -101,10 +102,12 @@ const handleUploadChange = (file) => {
 
 // 提交表单
 const submitForm = () => {
-    newsFormRef.value.validate((valid) => {
+    newsFormRef.value.validate(async (valid) => {
         if (valid) {
-            console.log(newsForm)
-
+            // console.log(newsForm)
+            // 提交至后台
+            await upload('/adminapi/news/add', newsForm)
+            router.push(`/news-manage/newslist`)
         }
     })
 }

@@ -2,9 +2,19 @@ var express = require('express');
 var UserRouter = express.Router();
 const UserController =require('../../controllers/admin/UserController')
 
-// 图片上传 
+
+var path = require('path')
+// 图片上传处理
 const multer  = require('multer')
-const upload = multer({ dest: 'public/avataruploads/' })
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/avataruploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+  }
+})
+var upload = multer({ storage: storage });
 
 // 用户登录路由 
 UserRouter.post('/adminapi/user/login', UserController.login);
