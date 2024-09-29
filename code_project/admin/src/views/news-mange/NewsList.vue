@@ -27,7 +27,8 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template #default="scope">
-                    <el-button :icon="Star" circle size="small" type="success"></el-button>
+                    <el-button :icon="View" circle size="small" type="success"
+                        @click="handlePreview(scope.row)"></el-button>
                     <el-button :icon="Edit" circle size="small"></el-button>
                     <el-button :icon="Delete" circle type="danger" size="small"></el-button>
 
@@ -35,6 +36,17 @@
                 </template>
             </el-table-column>
         </el-table>
+
+        <el-dialog v-model="dialogVisible" title="预览新闻" width="50%">
+            <div>
+                <h2>{{ previewData.title }}</h2>
+                <div style="font-size: 12px; color: gray;">{{ formatTime.getTime(previewData.editTime) }}</div>
+                <el-divider>
+                    <el-icon><star-filled /></el-icon>
+                </el-divider>
+                <div v-html="previewData.content" class="htmlcontent"></div>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -43,18 +55,22 @@
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
 import formatTime from '@/util/formatTime'
-import { Star, Edit, Delete } from '@element-plus/icons-vue'
+import { View, Edit, Delete, StarFilled } from '@element-plus/icons-vue'
 
 // 格式化时间方法
 const tableData = ref([])
 
+// 预览数据
+const previewData = ref({})
+// 预览弹窗的显示与隐藏
+const dialogVisible = ref(false)
 onMounted(() => {
     getTableData()
 })
 // 获取表格数据
 const getTableData = async () => {
     const res = await axios.get('/adminapi/news/list')
-    console.log(res.data)
+    // console.log(res.data)
     tableData.value = res.data.data
 }
 
@@ -76,6 +92,13 @@ const handleSwitchChange = async (item) => {
     // 重新获取表格数据
     getTableData()
 }
+
+
+const handlePreview = async (data) => {
+    // console.log(data)
+    previewData.value = data
+    dialogVisible.value = true
+}
 </script>
 
 
@@ -83,5 +106,9 @@ const handleSwitchChange = async (item) => {
 <style lang="scss" scoped>
 .el-table {
     margin-top: 50px;
+}
+
+::v-deep .htmlcontent img {
+    max-width: 100%;
 }
 </style>
