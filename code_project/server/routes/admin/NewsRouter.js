@@ -26,5 +26,4 @@ NewsRouter.get('/adminapi/news/list', NewsController.getList)
 // 是否发布文章路由
 NewsRouter.put('/adminapi/news/publish',NewsController.publish)
 
-// test
 module.exports = NewsRouter
