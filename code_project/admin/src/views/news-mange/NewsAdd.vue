@@ -117,4 +117,8 @@ const submitForm = () => {
 .el-form {
     margin-top: 50px;
 }
+
+.submit_btn {
+    margin-left: 50px;
+}
 </style>

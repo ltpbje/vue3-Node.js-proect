@@ -21,7 +21,8 @@
             </el-table-column>
             <el-table-column label="是否发布">
                 <template #default="scope">
-                    <el-switch v-model="scope.row.isPublish" :active-value="1" :inactive-value="0" />
+                    <el-switch v-model="scope.row.isPublish" :active-value="1" :inactive-value="0"
+                        @click="handleSwitchChange(scope.row)" />
                 </template>
             </el-table-column>
             <el-table-column label="操作">
@@ -62,6 +63,18 @@ const getTableData = async () => {
 const categoryFormat = (category) => {
     const arr = ['最新动态', '典型案例', '通知公告']
     return arr[category - 1]
+}
+
+// 是否发布开关切换
+const handleSwitchChange = async (item) => {
+    // 提交到后端 更新后端数据
+    await axios.put('/adminapi/news/publish', {
+        _id: item._id,
+        isPublish: item.isPublish
+    })
+
+    // 重新获取表格数据
+    getTableData()
 }
 </script>
 
