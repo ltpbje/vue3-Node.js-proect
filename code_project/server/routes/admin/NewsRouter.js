@@ -25,5 +25,6 @@ NewsRouter.post('/adminapi/news/add',upload.single('file'),NewsController.add)
 NewsRouter.get('/adminapi/news/list', NewsController.getList)
 // 是否发布文章路由
 NewsRouter.put('/adminapi/news/publish',NewsController.publish)
-
+// 删除新闻路由
+NewsRouter.delete('/adminapi/news/list/')
 module.exports = NewsRouter
