@@ -6,6 +6,17 @@ const NewsService = {
         // console.log('数据库操作')
         return NewsModel.create({title,content,category,isPublish,cover,editTime })
     },
+    updateList: async ({ title, content, category, isPublish,_id,cover,editTime }) => {
+        if (cover) {
+            return NewsModel.updateOne({ _id }, {
+                title, content, category, isPublish,cover,editTime
+            })
+        } else {
+            return NewsModel.updateOne({ _id }, {
+                title, content, category, isPublish,editTime
+            })
+        }
+    },
     getList:async ({_id}) => {
         return  _id ? NewsModel.find({_id}) : NewsModel.find({})
     },

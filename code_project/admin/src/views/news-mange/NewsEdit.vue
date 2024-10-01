@@ -11,7 +11,7 @@
                 <el-input v-model="newsForm.title" />
             </el-form-item>
             <el-form-item label="内容" prop="content">
-                <Editor @event="handleEditorChange"></Editor>
+                <Editor @event="handleEditorChange" :content="newsForm.content" v-if="newsForm.content"></Editor>
             </el-form-item>
 
             <el-form-item label="类别" prop="category">
@@ -26,7 +26,7 @@
 
             <el-form-item>
                 <el-button class="submit_btn" type="primary" @click="submitForm()">
-                    添加新闻
+                    更新新闻
                 </el-button>
             </el-form-item>
         </el-form>
@@ -106,10 +106,10 @@ const handleUploadChange = (file) => {
 const submitForm = () => {
     newsFormRef.value.validate(async (valid) => {
         if (valid) {
-            // console.log(newsForm)
+            console.log(newsForm)
             // 提交至后台
-            await upload('/adminapi/news/add', newsForm)
-            router.push(`/news-manage/newslist`)
+            await upload('/adminapi/news/list', newsForm)
+            router.back()
         }
     })
 }

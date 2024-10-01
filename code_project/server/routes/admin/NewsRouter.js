@@ -23,6 +23,8 @@ var upload = multer({ storage: storage });
 NewsRouter.post('/adminapi/news/add',upload.single('file'),NewsController.add)
 // 获取新闻列表数据路由
 NewsRouter.get('/adminapi/news/list', NewsController.getList)
+// 更新新闻路由
+NewsRouter.post('/adminapi/news/list',upload.single('file'),NewsController.updateList)
 // 获取单个新闻数据 用于编辑新闻数据获取
 NewsRouter.get('/adminapi/news/list/:id', NewsController.getList)
 // 是否发布文章路由
