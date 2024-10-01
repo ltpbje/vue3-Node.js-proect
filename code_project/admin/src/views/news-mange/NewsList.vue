@@ -29,7 +29,7 @@
                 <template #default="scope">
                     <el-button :icon="View" circle size="small" type="success"
                         @click="handlePreview(scope.row)"></el-button>
-                    <el-button :icon="Edit" circle size="small"></el-button>
+                    <el-button :icon="Edit" circle size="small" @click="handleEdit(scope.row)"></el-button>
 
                     <el-popconfirm title="你确定要删除吗?" confirm-button-text="确定" cancel-button-text="取消"
                         @confirm="handleDelete(scope.row)">
@@ -60,6 +60,7 @@ import axios from 'axios'
 import { ref, onMounted } from 'vue'
 import formatTime from '@/util/formatTime'
 import { View, Edit, Delete, StarFilled } from '@element-plus/icons-vue'
+import router from '@/router';
 
 // 格式化时间方法
 const tableData = ref([])
@@ -110,6 +111,14 @@ const handleDelete = async (item) => {
     await axios.delete(`/adminapi/news/list/${item._id}`)
     await getTableData()
 }
+
+
+// 编辑新闻回调
+
+const handleEdit = async (item) => {
+    router.push(`/news-manage/editnews/${item._id}`)
+}
+
 </script>
 
 
