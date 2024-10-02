@@ -39,6 +39,9 @@ import Editor from '@/components/editor/Editor.vue'
 import Upload from '@/components/upload/Upload.vue';
 import upload from '@/util/upload';
 import router from '@/router';
+import store from '@/store';
+// console.log(store.state.userInfo.username);
+
 const newsFormRef = ref()
 const newsForm = reactive({
     title: '',
@@ -46,7 +49,8 @@ const newsForm = reactive({
     category: 1,// 1 最新动态 2 典型案例 3 通知公告
     cover: '',
     file: null,
-    isPublish: 0 // 0 未发布  1 已发布
+    isPublish: 0, // 0 未发布  1 已发布
+    username: store.state.userInfo.username
 })
 const newsFormRules = reactive({
     title: [

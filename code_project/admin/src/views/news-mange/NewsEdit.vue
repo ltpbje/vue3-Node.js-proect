@@ -106,7 +106,7 @@ const handleUploadChange = (file) => {
 const submitForm = () => {
     newsFormRef.value.validate(async (valid) => {
         if (valid) {
-            console.log(newsForm)
+            // console.log(newsForm)
             // 提交至后台
             await upload('/adminapi/news/list', newsForm)
             router.back()
@@ -123,7 +123,7 @@ const route = useRoute()
 onMounted(async () => {
     // console.log(route.params.id);
     const res = await axios(`/adminapi/news/list/${route.params.id}`);
-    console.log(res.data.data[0]);
+    // console.log(res.data.data[0]);
     Object.assign(newsForm, res.data.data[0])
 })
 </script>

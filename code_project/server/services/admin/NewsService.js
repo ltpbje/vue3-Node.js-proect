@@ -2,9 +2,9 @@ const NewsModel = require("../../models/NewsModel")
 
 const NewsService = {
     add: async (data) => {
-       const {title,content,category,isPublish,cover,editTime}= data
+       const {title,content,category,isPublish,cover,editTime,username}= data
         // console.log('数据库操作')
-        return NewsModel.create({title,content,category,isPublish,cover,editTime })
+        return NewsModel.create({title,content,category,isPublish,cover,editTime,username })
     },
     updateList: async ({ title, content, category, isPublish,_id,cover,editTime }) => {
         if (cover) {
@@ -17,8 +17,12 @@ const NewsService = {
             })
         }
     },
-    getList:async ({_id}) => {
-        return  _id ? NewsModel.find({_id}) : NewsModel.find({})
+    getList: async ({ _id ,query}) => {
+        if (_id) {
+            return   NewsModel.find({_id})
+        } else {
+            return NewsModel.find({username: query.username})
+        }
     },
     publish: async ({_id,isPublish,editTime}) => {
         return NewsModel.updateOne({

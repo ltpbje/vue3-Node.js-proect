@@ -61,6 +61,7 @@ import { ref, onMounted } from 'vue'
 import formatTime from '@/util/formatTime'
 import { View, Edit, Delete, StarFilled } from '@element-plus/icons-vue'
 import router from '@/router';
+import store from '@/store';
 
 // 格式化时间方法
 const tableData = ref([])
@@ -74,7 +75,7 @@ onMounted(() => {
 })
 // 获取表格数据
 const getTableData = async () => {
-    const res = await axios.get('/adminapi/news/list')
+    const res = await axios.get(`/adminapi/news/list/?username=${store.state.userInfo.username}`)
     // console.log(res.data)
     tableData.value = res.data.data
 }
