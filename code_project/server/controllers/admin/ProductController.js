@@ -4,7 +4,7 @@ const moment = require('moment-timezone');
 const date = moment().tz('Asia/Shanghai').format();
 const ProductController = {
     add: async (req, res) => {
-        console.log(req)
+        // console.log(req)
         
         // console.log(req.file,req.body)
         const cover = req.file ? `/productuploads/${req.file.filename}` : ''
@@ -45,13 +45,13 @@ const ProductController = {
     //     })
 
     // },
-    // getList: async (req, res) => {
-    //     const result = await NewsService.getList({_id:req.params.id,query:req.query})
-    //     res.send({
-    //         ActionType: 'OK',
-    //         data:result
-    //     })
-    // },
+    getList: async (req, res) => {
+        const result = await ProductService.getList({_id:req.params.id,query:req.query})
+        res.send({
+            ActionType: 'OK',
+            data:result
+        })
+    },
     // publish:async (req,res) => {
     //     await NewsService.publish({
     //         ...req.body,
@@ -61,12 +61,12 @@ const ProductController = {
     //         ActionType: 'OK',
     //     })
     // },
-    // delList: async (req, res) => {
-    //     await NewsService.delList({_id:req.params.id})
-    //     res.send({
-    //         ActionType:'OK'
-    //     })
-    // }
+    delList: async (req, res) => {
+        await ProductService.delList({_id:req.params.id})
+        res.send({
+            ActionType:'OK'
+        })
+    }
 }
 
 module.exports = ProductController

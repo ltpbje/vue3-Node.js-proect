@@ -17,13 +17,13 @@ const ProductService = {
     //         })
     //     }
     // },
-    // getList: async ({ _id ,query}) => {
-    //     if (_id) {
-    //         return   NewsModel.find({_id})
-    //     } else {
-    //         return NewsModel.find({username: query.username})
-    //     }
-    // },
+    getList: async ({ _id ,query}) => {
+        if (_id) {
+            return   ProductModel.find({_id})
+        } else {
+            return ProductModel.find({username: query.username})
+        }
+    },
     // publish: async ({_id,isPublish,editTime}) => {
     //     return NewsModel.updateOne({
     //         _id
@@ -32,11 +32,11 @@ const ProductService = {
     //         editTime
     //     })
     // },
-    // delList: async ({ _id }) => {
-    //     return NewsModel.deleteOne({
-    //         _id
-    //     })
-    // }
+    delList: async ({ _id }) => {
+        return ProductModel.deleteOne({
+            _id
+        })
+    }
 }
 
 module.exports = ProductService
