@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const JWT = require('./util/JWT');
 const NewsRouter = require('./routes/admin/NewsRouter');
+const ProductRouter = require('./routes/admin/ProductRouter');
 
 var app = express();
 
@@ -61,6 +62,8 @@ app.use((req, res, next) => {
 app.use(UserRouter)
 // 后台系统用的新闻路由
 app.use(NewsRouter)
+// 后台系统用的产品路由
+app.use(ProductRouter)
  
 
 // catch 404 and forward to error handler
