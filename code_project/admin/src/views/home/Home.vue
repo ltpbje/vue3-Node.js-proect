@@ -23,9 +23,22 @@
                 </div>
             </template>
 
-            <el-carousel :interval="4000" type="card" height="200px">
-                <el-carousel-item v-for="item in 6" :key="item">
-                    <h3 text="2xl" justify="center">{{ item }}</h3>
+            <el-carousel v-if="loopList.length" :interval="4000" type="card" height="300px">
+                <el-carousel-item v-for="item in loopList" :key="item._id">
+                    <div :style="{
+                        backgroundImage: `url(http://localhost:3000${item.cover})`,
+                        backgroundSize: 'cover',
+                        height: '100%',
+                        width: '100%',
+                        position: 'relative'
+                        // backgroundRepeat: 'no-repeat'
+                    }">
+                        <h3 :style="{
+                            position: 'absolute',
+                            left: '90px',
+                            bottom: '-57px'
+                        }" text="2xl" justify="center">{{ item.title }}</h3>
+                    </div>
                 </el-carousel-item>
             </el-carousel>
         </el-card>
@@ -37,12 +50,24 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import axios from 'axios';
 const store = useStore()
-
+const loopList = ref([])
 const avatarUrl = computed(() => store.state.userInfo.avatar ? 'http://localhost:3000' + store.state.userInfo.avatar : 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png')
 const welcomeText = computed(() => new Date().getHours() < 12 ? '要开心每一天!' : '喝杯咖啡提提神吧!')
-console.log(store.state)
+// console.log(store.state)
+onMounted(() => {
+    getData()
+})
+// 获取表格数据
+const getData = async () => {
+    const res = await axios.get(`/adminapi/product/list/?username=${store.state.userInfo.username}`)
+    // console.log(res.data)
+    loopList.value = res.data.data
+    console.log(loopList.value);
+
+}
 
 </script>
 
@@ -53,7 +78,7 @@ console.log(store.state)
 }
 
 .el-carousel__item h3 {
-    color: #475669;
+    color: white;
     opacity: 0.75;
     line-height: 200px;
     margin: 0;
