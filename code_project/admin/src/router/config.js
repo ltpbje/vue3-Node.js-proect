@@ -9,6 +9,7 @@ import ProductAdd from "@/views/product-mange/ProductAdd.vue"
 import ProductList from "@/views/product-mange/ProductList.vue"
 import NotFound from "@/views/notfound/NotFound.vue"
 import store from "@/store"
+import ProductEdit from "@/views/product-mange/ProductEdit.vue"
 
 const routes = [
   {
@@ -61,6 +62,10 @@ const routes = [
   {
     path: "/product-manage/productlist",
     component: ProductList,
+  },
+  {
+    path: "/product-manage/editproduct/:id",
+    component: ProductEdit,
   },
   {
     path: "/",

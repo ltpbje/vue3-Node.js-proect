@@ -22,10 +22,10 @@ var upload = multer({ storage: storage });
 ProductRouter.post("/adminapi/product/add",upload.single('file'),ProductController.add)
 // // 获取产品列表数据路由
 ProductRouter.get('/adminapi/product/list', ProductController.getList)
-// // 更新产品路由
-// ProductRouter.post('/adminapi/news/list',upload.single('file'),NewsController.updateList)
-// // 获取单个产品数据 用于编辑产品数据获取
-// ProductRouter.get('/adminapi/news/list/:id', NewsController.getList)
+// 更新产品路由
+ProductRouter.post('/adminapi/product/list',upload.single('file'),ProductController.updateList)
+// 获取单个产品数据 用于编辑产品数据获取
+ProductRouter.get('/adminapi/product/list/:id', ProductController.getList)
 // // 是否发布文章路由
 // ProductRouter.put('/adminapi/news/publish',NewsController.publish)
 // 删除产品路由

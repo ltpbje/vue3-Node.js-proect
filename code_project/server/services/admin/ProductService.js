@@ -6,17 +6,32 @@ const ProductService = {
         // console.log('数据库操作')
         return ProductModel.create({title,introduction,detail,cover,editTime,username})
     },
-    // updateList: async ({ title, content, category, isPublish,_id,cover,editTime }) => {
-    //     if (cover) {
-    //         return NewsModel.updateOne({ _id }, {
-    //             title, content, category, isPublish,cover,editTime
-    //         })
-    //     } else {
-    //         return NewsModel.updateOne({ _id }, {
-    //             title, content, category, isPublish,editTime
-    //         })
-    //     }
-    // },
+    updateList: async ({
+            _id,
+            title,
+            introduction,
+            detail,
+            cover,
+            editTime
+            // editTime:new Date()
+        }) => {
+        if (cover) {
+            return ProductModel.updateOne({ _id }, {
+            title,
+            introduction,
+            detail,
+            cover,
+            editTime
+            })
+        } else {
+            return ProductModel.updateOne({ _id }, {
+                title,
+                introduction,
+                detail,
+                editTime
+            })
+        }
+    },
     getList: async ({ _id ,query}) => {
         if (_id) {
             return   ProductModel.find({_id})

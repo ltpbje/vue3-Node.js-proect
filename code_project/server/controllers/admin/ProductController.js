@@ -25,26 +25,25 @@ const ProductController = {
         })
         
     },
-    // updateList:async (req, res) => {
-    //      const cover = req.file ? `/newsuploads/${req.file.filename}` : ''
-    //     const { title, content, category, isPublish,_id } = req.body
-    //     // console.log(new Date());
-    //     // 调用service进行更新
-    //     await NewsService.updateList({
-    //         _id,
-    //         title,
-    //         content,
-    //         category: Number(category),
-    //         isPublish: Number(isPublish),
-    //         cover,
-    //         editTime: date
-    //         // editTime:new Date()
-    //     })
-    //     res.send({
-    //         ActionType: 'OK'
-    //     })
+    updateList:async (req, res) => {
+         const cover = req.file ? `/productuploads/${req.file.filename}` : ''
+        const { title, introduction,detail,_id } = req.body
+        // console.log(new Date());
+        // 调用service进行更新
+        await ProductService.updateList({
+            _id,
+            title,
+            introduction,
+            detail,
+            cover,
+            editTime: date
+            // editTime:new Date()
+        })
+        res.send({
+            ActionType: 'OK'
+        })
 
-    // },
+    },
     getList: async (req, res) => {
         const result = await ProductService.getList({_id:req.params.id,query:req.query})
         res.send({

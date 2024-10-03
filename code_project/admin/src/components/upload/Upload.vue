@@ -1,7 +1,7 @@
 <template>
     <el-upload class="avatar-uploader" action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
         :show-file-list="false" :auto-upload="false" :on-change="handleChange">
-        <img v-if="props.avatar" :src="uploadAvatar" class="avatar" />
+        <img style="width: 100%; height: 100%;" v-if="props.avatar" :src="uploadAvatar" class="avatar" />
         <el-icon v-else class="avatar-uploader-icon">
             <Plus />
         </el-icon>

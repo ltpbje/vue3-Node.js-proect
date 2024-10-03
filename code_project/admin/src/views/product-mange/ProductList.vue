@@ -72,7 +72,7 @@ const handleDelete = async (item) => {
 // 编辑新闻回调
 
 const handleEdit = async (item) => {
-    router.push(`/news-manage/editnews/${item._id}`)
+    router.push(`/product-manage/editproduct/${item._id}`)
 }
 
 </script>
