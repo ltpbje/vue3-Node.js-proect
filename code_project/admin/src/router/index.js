@@ -3,6 +3,8 @@ import Login from "@/views/Login.vue"
 import MainBox from "@/views/MainBox.vue"
 import RoutesConfig from "./config"
 import store from "@/store"
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 const routes = [
   {
     path: "/login",
@@ -45,6 +47,16 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  NProgress.start()
+  next()
+})
+router.afterEach((to, from) => {
+  // to and from are both route objects.
+  NProgress.done()
+  
+})
 // ConfigRouter()
 function ConfigRouter() {
   RoutesConfig.forEach((item) => {
