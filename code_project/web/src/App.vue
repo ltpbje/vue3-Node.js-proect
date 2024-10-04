@@ -1,12 +1,14 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-
-</script>
-
 <template>
+  <NavBar></NavBar>
   <RouterView />
 </template>
 
+
+<script setup>
+import { RouterView } from 'vue-router'
+import NavBar from './components/Navbar.vue'
+
+</script>
 <style lang="scss">
 * {
   margin: 0;
