@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const JWT = require('./util/JWT');
 const NewsRouter = require('./routes/admin/NewsRouter');
+const webNewsRouter = require('./routes/web/NewsRouter');
 const ProductRouter = require('./routes/admin/ProductRouter');
 
 var app = express();
@@ -26,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+
+// 前端web界面用的新闻路由
+app.use(webNewsRouter)
 /** 
  /adminapi/*－后台系统用的
  /webapi/*－企业官网用的
@@ -64,6 +68,7 @@ app.use(UserRouter)
 app.use(NewsRouter)
 // 后台系统用的产品路由
 app.use(ProductRouter)
+
  
 
 // catch 404 and forward to error handler

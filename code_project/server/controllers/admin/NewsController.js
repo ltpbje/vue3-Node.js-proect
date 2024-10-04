@@ -14,9 +14,9 @@ const NewsController = {
             category: Number(category),
             isPublish: Number(isPublish),
             cover,
-            editTime: date,
+            editTime:new Date(),
             username
-            // editTime:new Date()
+            
         })
         res.send({
             ActionType: 'OK'
@@ -35,7 +35,7 @@ const NewsController = {
             category: Number(category),
             isPublish: Number(isPublish),
             cover,
-            editTime: date
+            editTime: new Date()
             // editTime:new Date()
         })
         res.send({
@@ -53,7 +53,7 @@ const NewsController = {
     publish:async (req,res) => {
         await NewsService.publish({
             ...req.body,
-            editTime:date
+            editTime:new Date()
         })
         res.send({
             ActionType: 'OK',

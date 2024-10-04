@@ -36,7 +36,7 @@ const ProductController = {
             introduction,
             detail,
             cover,
-            editTime: date
+            editTime: new Date()
             // editTime:new Date()
         })
         res.send({
