@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import News   from '../views/News.vue'
+import New   from '../views/New.vue'
+
 import Product from '../views/Product.vue'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -16,6 +18,11 @@ const router = createRouter({
       path: '/news',
       name: 'news',
       component:News
+    },
+    {
+      path: '/news/:id',
+      name: 'new',
+      component:New
     },
     {
       path: '/product',
