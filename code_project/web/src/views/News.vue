@@ -4,7 +4,6 @@
             backgroundImage: `url(${newsbg})`
         }">
         </div>
-
         <div class="search">
             <el-popover placement="bottom" width='50%' title="检索结果" :visible="visible">
                 <template #reference>
@@ -24,7 +23,26 @@
 
         </div>
 
-        <div class="topnews"></div>
+        <div class="topnews">
+            <el-row :gutter="20">
+                <el-col :span="6" v-for="item in topNewsList" :key="item._id">
+                    <el-card shadow="hover" style="max-width: 480px">
+
+                        <div class="image" :style="{ backgroundImage: `url(http://localhost:3000${item.cover})` }">
+                        </div>
+
+                        <div style="padding: 14px;">
+                            <span>{{ item.title }}</span>
+                            <div class="bottom">
+                                <time class="time">{{ whichTime(item.editTime) }}</time>
+                            </div>
+
+                        </div>
+                    </el-card>
+                </el-col>
+
+            </el-row>
+        </div>
     </div>
 </template>
 
@@ -33,6 +51,8 @@ import newsbg from '@/assets/newsbg.jpg'
 import { Search } from '@element-plus/icons-vue'
 import axios from 'axios';
 import { ref, onMounted, computed } from 'vue'
+import moment from 'moment';
+moment.locale("zh-cn")
 const searchText = ref('')
 const visible = ref(false)
 const newsList = ref([])
@@ -47,12 +67,15 @@ const searchnewsList = computed(() => {
 const topNewsList = computed(() => {
     return newsList.value.slice(0, 4)
 })
+
+const whichTime = time => { return moment(time).format('YYYY年MM月DD日 HH:MM:SS') }
 </script>
 
 <style lang="scss" scoped>
 .container {
     position: relative;
 }
+
 
 .news-header {
     width: 100%;
@@ -83,6 +106,17 @@ const topNewsList = computed(() => {
 }
 
 .topnews {
-    margin-top: 20px;
+    margin: 20px;
+
+    .image {
+        width: 100%;
+        height: 150px;
+        background-size: cover;
+    }
+
+    .time {
+        font-size: 13px;
+        color: gray;
+    }
 }
 </style>
