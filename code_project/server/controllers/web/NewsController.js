@@ -8,6 +8,13 @@ const NewsController = {
             data:result
         })
     },
+    getTopList:async (req, res) => {
+        const result = await NewsService.getTopList({limit:req.query.limit})
+        res.send({
+            ActionType: 'OK',
+            data:result
+        })
+    },
  
   
 }

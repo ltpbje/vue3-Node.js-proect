@@ -8,6 +8,9 @@ const NewsService = {
             return NewsModel.find({isPublish:1}).sort({editTime:-1})
         }
     },
+    getTopList: async ({ limit }) => {
+        return NewsModel.find({isPublish:1}).sort({editTime:-1}).limit(limit)
+    },
 }
 
 module.exports = NewsService
