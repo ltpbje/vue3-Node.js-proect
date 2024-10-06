@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 const JWT = require('./util/JWT');
 const NewsRouter = require('./routes/admin/NewsRouter');
 const webNewsRouter = require('./routes/web/NewsRouter');
+const webProductRouter = require('./routes/web/ProductRouter');
 const ProductRouter = require('./routes/admin/ProductRouter');
 
 var app = express();
@@ -30,6 +31,8 @@ app.use('/users', usersRouter);
 
 // 前端web界面用的新闻路由
 app.use(webNewsRouter)
+app.use(webProductRouter)
+
 /** 
  /adminapi/*－后台系统用的
  /webapi/*－企业官网用的
